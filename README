@@ -1,5 +1,6 @@
 
 OpenFoos is a system to register foosball games and keep track of game history and statistics.
-We are aiming to drive the development through Specification by Example (http://gojko.net/)
+We are aiming to drive the development through Specification by Example (http://gojko.net/), but contributions for 
+unspecied behaviour are also welcome. The prosess is mean to be a help in development.
 
 Please feel free to join in or give feedback on our specifications. We want to learn! :)
