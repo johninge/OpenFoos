@@ -1,0 +1,113 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+username = Username
+password = Password
+rfid = Radio Frequency Identification
+first_name = First name
+last_name = Last name
+email = Email
+image = Image
+bio = Biography
+registered = Registration Date
+
+
+
+
+
+
+
+# Game
+
+home_team = Home team
+visitor_team = Visitor team
+home_score = Home's score
+visitor_score = Visitor's score
+winner = Winner   
+start_time = Started
+end_time = Finished
+mode = Mode
+
+#Team
+
+
+team_name = Team name
+player1 = Player one
+player2 = Player two
+arch_rival = Arch rival
+rating = Rating
+won = Won
+lost = Lost
+#Board
+
+
+latitude = Latitude
+longitude = Longitude
+description = Description
+address = Address
+city = City
+organization = Organization   
+active = Active
+inUse = In use (for ongoing matches)
+board_name = Name
+count_games_played = Number of games played at this board
+
+
+
+# Default CRUD messages
+# ~~~~~~
+
+crud.title=Administration
+crud.home=Home
+crud.blank=New
+crud.index.title=Choose one of the options
+crud.index.objectType=Object type
+crud.index.action=
+crud.index.add=Add
+crud.add=Add &{%s}
+crud.list.title=&{%s}
+crud.list.size=%d &{%s}
+crud.list.totalSize=%d total
+crud.pagination.previous=« Previous
+crud.pagination.next=Next »
+crud.pagination.last=Last »»
+crud.pagination.first=«« First
+crud.show.title=Edit &{%s}
+crud.save=Save
+crud.saveAndContinue=Save and continue editing
+crud.cancel=Cancel
+crud.hasErrors=Please correct errors
+crud.blank.title=Add &{%s}
+crud.saveAndAddAnother=Save and create another
+crud.delete=Delete &{%s}
+crud.created=The &{%s} has been created
+crud.saved=The &{%s} has been saved
+crud.deleted=The &{%s} has been deleted
+crud.delete.error=Cannot delete this object
+crud.search=Search
+crud.none=(None)
+crud.selectValue=(Please select a player)
+
+crud.help.required=Required.
+crud.help.minlength=Min length is %d.
+crud.help.maxlength=Max length is %d.
+crud.help.email=Valid email address.
+crud.help.dateformat=&{%s} format.
+crud.help.numeric=Numeric.
+crud.help.min=Must be greater than %d.
+crud.help.future=In the future.
+crud.help.past=In the past.
+crud.help.after=After %s.
+crud.help.before=Before %s.
+crud.help.range=Between %d and %d
+
+
+#DEfault secure messages 
+
+secure.title=Welcome to Admin
+secure.username=Username:
+secure.password=Password:
+secure.remember=Remember me
+secure.signin=Sign in
+secure.error=Oops, unknown username or password.
+secure.logout=You have been logged out.

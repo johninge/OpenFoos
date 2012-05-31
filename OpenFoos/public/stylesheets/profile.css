@@ -1,0 +1,426 @@
+/*
+    My Custom Stylesheet
+*/
+
+/* First, pull in Bootstrap's stylesheet */
+@import url(/public/bootstrap/css/bootstrap.css);
+
+
+/* Now my custom styles */
+
+body
+{
+    padding-top: 60px;
+    background-image:  url("../images/default/bg.png");
+    background-position: left 40px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    background-color: #C0DEED;
+}
+
+
+/******************************************
+    General
+******************************************/
+.menydowner{
+    margin-top: 16px;
+}
+.menydowner2{
+    margin-top: 13px;
+}
+
+.card
+{
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    padding:12px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    -ms-box-sizing:border-box; /* ie8 */
+}
+
+.section
+{
+    margin-bottom: 15px;
+}
+
+img
+{
+    border-radius: 5px;
+
+}
+
+.shadow{
+    background: -webkit-linear-gradient(top,white 0,#DDD 100%);
+    background: -moz-linear-gradient(top,white 0,#DDD 100%);
+    background: -ms-linear-gradient(top,white 0,#DDD 100%);
+    background: -o-linear-gradient(top,white 0,#DDD 100%);
+    background: linear-gradient(top,white 0,#DDD 100%);
+
+    border-left: solid 1px #EEE;
+    border-right: solid 1px #EEE;
+    border-bottom: solid 1px #CCC;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 0 rgba(0,0,0,.1);
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.underline{
+    border-bottom: 1px solid #eee;
+}
+
+.title{
+    color: silver;
+    font-weight: lighter;
+}
+
+.subheader{
+    color: #999;
+    margin-top: 3px;
+}
+
+.thumbnail{
+    border: 0;
+    box-shadow: none;
+}
+
+.number{
+    float: right;   
+}
+
+.image-info{
+    padding: 5px 20px;
+}
+
+/*
+.team-name{
+    padding: 4px 20px;
+
+}*/
+
+textarea
+{
+    min-width: 270px;
+    max-width: 270px;
+    min-height: 50px;
+    max-height: 50px;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover
+{
+    font-weight: bold;
+}
+
+/******************************************
+    Profile-Page  (profile.html)
+******************************************/
+.profile-right-corner{
+    width: 112px;
+    margin: 10px 55px 9px 25px;
+    padding-top: 30px;
+    list-style: none;
+
+}
+.stat-para{
+    margin: 0px;
+    float: right;
+
+}
+#profile-menu
+{
+    background-color:white;
+    border-radius: 5px;
+}
+
+.tb-arch-rival{
+    background-color: lightgrey;
+}
+
+.prosent{
+    float: right;
+}
+
+.green-title{
+    background-color:lightgreen;
+}
+
+.blue-title{
+    background-color:lightblue;
+}
+
+.yellow-title{
+    background-color:yellow;
+}
+.red-title{
+    background-color: red;
+}
+
+/*
+    DETTE ER NYTT PSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+*/
+#all-info{
+    /*
+    -webkit-box-shadow: 1px 1px 1px #888;
+    border: 1px grey solid;
+    */
+}
+
+.small-image{
+    width: 128px;
+    height: 128px;
+
+}
+
+.large-image{
+    width: 198px;
+    height: auto;
+
+}
+
+
+/*******************************************************************
+    DETTE ER NYTT
+***********************************************************************/
+#team_box{
+    float: right;
+    width: 420px;
+    height: auto;
+}
+
+
+/***************************************************************************
+    DETTE ER NYTT DATO 01.MAI.2012
+***************************************************************************/
+pre{
+    background-color: inherit;
+    border: none;
+    padding: 0;
+}
+
+/***************************************************************************
+    DETTE ER NYTT DATO 01.MAI.2012
+***************************************************************************/
+#info h3{
+    margin-left: 40%;
+}
+
+
+
+
+/******************************************
+    Profile-Page (settings.html)
+******************************************/
+
+.dashboard
+{
+    width: 300px;
+    float: left;
+}
+
+
+.form-actions
+{
+    background-color: white;
+    border-top: 0;
+}
+
+
+/******************************************
+    Profile-Page (main_page.html)
+******************************************/
+
+#profile-signin, #profile-signup
+{
+    margin: 0 0 0 -2px;
+}
+
+#signup-btn{
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.main-title h2 strong
+{
+    font-weight: 500;
+    color: #333;
+}
+
+.main-title h2
+{
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #777;
+    border-bottom: 1px solid #E2E2E2;
+}
+
+#top{
+    background: transparent url("/public/images/default/best_worst_bg_repeat.png") repeat-x 0 0;
+    height: 49px;
+    margin-top: 5px;
+
+}
+#top h3{
+    display: initial;
+}
+
+#top h3, img{
+    padding: 5px;
+}
+
+.online_player_stat{
+    color: black;
+    font-weight: bold;
+}
+
+/*****************************************************************************
+DETTE ER NYTT DATO 02.04.2012
+*****************************************************************************/
+#main_info{
+    /*
+   height: 360px;*/
+    height: auto;
+    min-height: 360px;
+}
+
+#left_bar{
+    margin: 0px;
+}
+
+#right_bar{
+    background-color: #eee;
+    border-radius: 5px;
+    height: 260px;
+    width: 270px;
+}
+#left_bar2{
+    margin: 0px;
+}
+
+#right_bar2{
+    background-color: #eee;
+    border-radius: 5px;
+    height: 260px;
+    width: 270px;
+}
+#left_bar3{
+    margin: 0px;
+}
+
+#right_bar3{
+    background-color: #eee;
+    border-radius: 5px;
+    height: 260px;
+    width: 270px;
+}
+
+.change_color {
+    margin-bottom: 0px;
+}
+
+.change_color tbody > tr > td:last-child {
+    color: red;
+    text-align: right;
+}
+
+.nav-tabs > .active > a, 
+.nav-tabs > .active > a:hover
+{
+    background-color: #ddd;
+}
+
+.point{
+    text-align: right;
+    background-color: red;
+}
+
+
+
+/******************************************
+    Profile-Page (login_fail.html)
+******************************************/
+
+.signin-wrapper{
+    background: white;
+    width: inherit;
+    border-radius: 6px;
+    border: 1px solid #EEE;
+    border: 1px solid rgba(0, 0, 0, .2);
+    margin-top: -14px;
+}
+
+.signin-wrapper h1{
+    padding: 40px 0 20px 0;
+    margin: 0 160px 10px;
+    clear: both;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.bottom-box{
+    background-color: #F4F4F4;
+    padding: 20px 12px 20px 126px;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.alert1{
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 18px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #c09853;
+
+    position: relative;
+    width: 500px;
+    margin: 0px auto;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+.close{
+    color: white;
+    background-color: inherit;
+    border: none;
+}
+
+
+
+
+#all-info thead tr th:first-child{
+   background-color: white; 
+   color: white; 
+}
+
+
+#all-info th{
+   background-color: grey; 
+   color: white; 
+}
+

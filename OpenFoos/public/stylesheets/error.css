@@ -1,0 +1,54 @@
+/* 
+    Document   : error
+    Created on : 29.apr.2012, 20:38:56
+    Author     : Neberd
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    font: 11px "Lucida Grande",Arial,Verdana,sans-serif;
+    background: #D4D4D4 repeat-x;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.error404_main {
+    background: url(/public/images/default/error404_main.jpg) no-repeat;
+    width: 960px;
+    height: 550px;
+    /*
+    margin-left: 0;
+    margin-right: 0;
+    */
+    margin: 48px 21px 0 210px;
+    position: relative;
+}
+
+.main_txt {
+    display: block;
+    width: 150px;
+    height: 63px;
+    position: absolute;
+    top: 223px;
+    left: 745px;
+    text-align: center;
+    color: #1D1D1D;
+    padding: 2px 0 0 0;
+}
+
+.main_txt span {
+    display: block;
+    margin: 0 0 2px 0;
+}
+
+

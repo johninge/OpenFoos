@@ -1,0 +1,20 @@
+#{extends 'CRUD/layout.html' /}
+#{set title:messages.get('crud.list.title', type.name) /}
+
+<div id="crudList" class="${type.name}">
+
+    <h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+
+    <div id="crudListSearch">
+        #{crud.search /}
+    </div>
+
+    <div id="crudListTable">
+        #{crud.table fields:['start_time', 'end_time', 'home_team', 'visitor_team', 'mode']  /}
+    </div>
+
+    <div id="crudListPagination">
+        #{crud.pagination /}
+    </div>
+
+</div>

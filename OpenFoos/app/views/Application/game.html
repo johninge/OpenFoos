@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Openfoos!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="@{'/public/stylesheets/game.css'}" />
+        <script src="@{'/public/javascripts/jquery-1.7.2.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/underscore.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/json2.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/backbone.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/bootstrap/js/typeahead.js'}" type="text/javascript" charset="${_response_encoding}" ></script>
+        <script src="@{'/public/javascripts/game.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        
+        
+
+        
+
+    </head>
+    <body>
+        <div class="container">        
+            
+        <div id="request-indicator"><img src="@{'/public/images/game/loader.gif'}" /></div>
+        <div id="messages" style="display:none;"></div>
+        <div id="result-container" style="display:none;"></div>
+        
+            <div id="field">
+                <div id="playfield">
+                    <div id="home-team">
+                        <h2 class="team-name"></h2>
+                    </div>  
+                    <div id="visitor-team">
+                        <h2 class="team-name"></h2>
+                    </div>
+                    <div id="game-state">
+                    </div> 
+                </div><!-- END #playfield --> 
+                
+                <div id="game-mode">
+                </div>                
+                
+            </div><!-- END field -->
+                
+                <div id="board">
+                    
+                </div><!-- END #board --> 
+        </div><!-- END .container --> 
+        
+        <div id="board-container"></div>
+        
+
+        <script type="text/template" id="player-template">
+            <% 
+
+            var statusClass = '',
+                status = '';
+                
+            if(typeof id === 'undefined')
+            {
+                statusClass = 'player-login'; 
+                status = 'login';
+            }
+            
+            else
+            {
+                                
+                var state = Foosball.Game.get('state');                    
+                
+                
+                if(state === 'new')
+                {
+                    statusClass = 'player-logout'; 
+                    status = 'logout';
+                }
+
+                else if(state === 'started')
+                {
+                    statusClass = 'player-score'; 
+                    status = 'score!';
+                }
+            }
+            
+                    var imagePath = "/public/images/players/";
+                    if(image)
+                    {
+                        imagePath += image; 
+                    }
+                    else
+                    {
+                        imagePath += "player.png"
+                    }
+            
+            
+            %>
+            <div class="<%= statusClass %>">
+              <div class="player" tabindex="0">
+                    <div class="goal-options indent">
+                        <ul>
+                    <li style="background-color: #D9FF72;color: #97cf00;" class="goal-options-score indent"><span class="goal-options-label">score!</span></li>
+                    <li class="goal-options-backfire indent"><span class="goal-options-label">own<br/>goal!</span></li>
+                    <li class="goal-options-unscore indent"><span class="goal-options-label">regret<br/>goal!</span></li>
+                    <li style="background-color: #ffe556;color: #eac600;"class="goal-options-cancel indent"><span class="goal-options-label">cancel</span></li>
+                        </ul>
+                    </div>
+                  <div class="player-image indent"  style="background-image: url('<%= imagePath %>');"></div>
+                </div>        
+                    <div class="player-status cursive"><%= status %></div>
+            </div><!-- END statusclass --> 
+                <h2 class="player-name cursive dark-green"><%= username %></h2>
+        </script>
+
+        <script type="text/template" id="login-template">
+            <div id="login-container">
+                <button id="rfid" class="button"><img id="rfidlogo" src="/public/images/game/rfidlogo.png" alt="RFID" /></button>
+                <input type="password" id="rfid-input" style="width:1px; height:1px; background-color: transparent; border: 0px; padding:0; margin:0; z-index: 10; font-size: 1px"/>
+                <input type="text" autocomplete="off" id="username"  placeholder="username" data-provide="typeahead" />
+                <input type="password" id="password" placeholder="password"/>
+                
+                <button id="login" class="button green">Login</button>
+                <button id="register" class="button yellow">Register</button>
+            </div>
+        </script>
+       
+        <script type="text/template" id="result-template">
+            
+            <div id="result-title" class="cursive"><%= winner.get('team_name') %> won the match!</div>
+            <div id="result-teams">
+            <div id="result-home">
+                <div class="result-medal">
+                    <%
+                    var homeWon = homeTeam.get('won');
+                    var homeLost = homeTeam.get('lost');
+                    
+                    if(winner === homeTeam)
+                    {
+                      homeWon++;
+                     %>
+                     <img src="/public/images/game/medal.png" />
+                     <%
+                     }
+                     else
+                     {
+                        homeLost++;
+                     }
+                     %>
+                </div>
+                <div class="result-info">
+                    <h3 class="cursive"><%= homeTeam.get('team_name') %></h3>
+                    <ul class="result-info-meta">
+                        <li>Won: <%= homeWon %></li>
+                        <li>Lost: <%= homeLost %></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="result-visitor">
+                <div class="result-medal">
+                    <%
+                    var visitorWon = visitorTeam.get('won');
+                    var visitorLost = visitorTeam.get('lost');
+                    if(winner === visitorTeam)
+                    {  
+                        visitorWon++;
+                     %>
+                     <img src="/public/images/game/medal.png" />
+                     <%
+                     }
+                     else
+                     {
+                        visitorLost++;
+                     }
+                     %>
+                </div>
+                <div class="result-info">
+                    <h3 class="cursive"><%= visitorTeam.get('team_name') %></h3>
+                    <ul class="result-info-meta">
+                        <li>Won: <%= visitorWon %></li>
+                        <li>Lost: <%= visitorLost %></li>
+                    </ul>
+                </div>
+            </div>
+            </div><!-- END #result-teams --> 
+            <div class="clear"></div>
+            <div id="result-buttons">
+                <button id="finish-button" class="button yellow">Finish</button>    
+                <button id="restart-button" class="button yellow">Re-match</button>    
+            </div>
+            
+        </script>
+        
+        
+        
+        <script type="text/template" id="scoreboard-template">
+            <div id="clock-container">
+            </div>
+            <div id="score-container">
+                <div id="home">
+                    <h4 class="score-label">Home</h4>
+                    <p class="score"><span id="home-score">0</span></p>
+                </div>
+                <div id="visitor">
+                    <h4 class="score-label">Away</h4>
+                    <p class="score"><span id="visitor-score">0</span></p>
+                </div>
+           </div>
+                <button id="regret-goal" style="margin-left: 35px" class="button yellow">Reject goal!</button>
+        </script>
+        
+        <script type="text/template" id="clock-template">  
+            <label id="minutes">00</label><label>:</label><label id="seconds">00</label>​ 
+        </script>
+        
+        <script type="text/template" id="welcome-template">  
+                <h1 class="cursive">Welcome to openfoos</h1>
+                <h2 class="cursive">Click on a player to log-in</h2>
+        </script>
+        
+        <script type="text/template" id="message-template">
+            <div id="message" class="<%= type %>">
+            <p><%= message %></p>
+            <%
+               if(type === 'option'){
+            %>
+            <button id="message-confirm-option" class="button green">Confirm</button>    
+            <button id="message-decline-option" class="button yellow">Decline</button>    
+            <% }
+            else if(hold){ 
+            %>
+            <button id="close-message" class="button yellow">x</button>    
+            <% } %>
+             </div>
+        </script>
+        
+        <script type="text/template" id="mode-template">
+            <h3 class="dark-green cursive">Game  mode</h3>
+            <div class="btn-group">               
+                <button id="friendly-mode-button" class="button <%= isFriendlyActive %>">Friendly</button>    
+                <button id="ranked-mode-button" class="button <%= isRankedActive %>">Ranked</button> 
+            </div>
+        </script>
+
+    </body>
+</html>

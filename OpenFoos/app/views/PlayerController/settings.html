@@ -1,0 +1,384 @@
+#{extends 'main.html' /}
+#{set page:'settings' /}
+<script type="text/javascript" src="/public/javascripts/text_manipulation/openfoos_text.js"></script>
+
+<script type="text/javascript" >
+    
+    $(document).ready(function(){
+        
+        
+ 
+        doInputfeltTricks();
+        
+        $('.bar').css('width', '${compeleted}%')
+        
+        $('#playerArchRival').typeahead({
+            items: 3, 
+            source: function (typeahead) {
+                return $.get('/application/everybody ',  function (data) 
+                {
+                    return typeahead.process(data);
+                });
+            },
+            onselect: function (data){
+                  
+                  
+               
+            }
+        });
+        
+    });
+    
+</script>
+<div class="row">
+    <div class="dashboard">
+        <div class="span4 card section">
+            <ul class="thumbnails">
+                <li>
+                    <a href="/players/profile/${player?.username}" class="thumbnail">
+                        <img src="@{'/public/images/players'}/${player?.image}" alt="${player?.username}" >
+                    </a>
+                </li>
+                <li>
+                    <h3>${player?.first_name} ${player?.last_name}</h3>
+                    <p class="subheader">View your profile page</p>
+                </li>
+            </ul>
+
+            <div class="progress progress-striped
+                 active">
+
+                <div class="bar" 
+
+                     style="width:100%; "></div>
+
+            </div>
+            You have completed ${compeleted}% of you profile
+        </div>
+
+
+        <div class="span4">
+            <ul id="profile-menu" class="nav nav-tabs nav-stacked ">
+
+                #{if p == 1}
+                <li class="active">
+                    #{/if}
+                    #{else}
+                <li>
+                    #{/else}
+                    <a href="#account" data-toggle="tab">Profile management
+                        <i class="icon-chevron-right pull-right"></i>
+                    </a>
+                </li>
+
+                #{if p == 2}
+                <li class="active">
+                    #{/if}
+                    #{else}
+                <li>
+                    #{/else}
+                    <a href="#team" data-toggle="tab">Gamer profile ${team.team_name}
+                        <i class="icon-chevron-right pull-right"></i>
+                    </a>
+                </li>
+
+                #{if p == 3}
+                <li class="active">
+                    #{/if}
+                    #{else}
+                <li>
+                    #{/else}
+                    <a href="#password" data-toggle="tab">Password
+                        <i class="icon-chevron-right pull-right"></i>
+                    </a>
+                </li>
+            </ul>
+
+
+
+            
+            #{ifError 'itsok'}
+            <div class="alert alert-success">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Changes…</h1>
+                <br/>
+                #{errors 'itsok'}
+
+                <li>${error}</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+            #{ifError 'settings'}
+            <div class="alert alert-error">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Oops…</h1>
+                <br/>
+                #{errors 'settings'}
+                <li>${error }</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+
+
+
+
+            
+            #{ifError 'gay'}
+            <div class="alert">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Okey...</h1>
+                <br/>
+                #{errors 'gay'}
+
+                <li>${error}</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+
+
+        </div>
+
+    </div>
+    <div class="tabbable" style="float: right"> 
+        <div class="span8">
+            <div class="tab-content card">
+
+
+                #{if p == 1}
+                <div class="tab-pane active" id="account">
+                    #{/if}
+                    #{else}
+                    <div class="tab-pane" id="account">
+                        #{/else}
+
+                        <h2>Profile management</h2>
+                        <h3 class="title underline section "> 
+                            This information will be seen by people who visit your profile page.</h3>
+
+                        <br/><br/>
+                        <!-- FOR PLAYER INFO -->
+                        <form id="editformplayer" action="@{PlayerController.editPlayer()}"
+                              enctype="multipart/form-data" method="POST" class="form-horizontal">
+                            #{authenticityToken /}
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="fileInput">Picture</label>
+                                    <img src="@{'/public/images/players'}/${player?.image}" width="79" height="79" style="float: left; margin: 0 20px 0 20px;"/>
+                                    <div class="controls">
+                                        <input class="input-file" type="file" name="image" id="image"/><br/>
+                                        Maximum size of 700kb.<br/> 
+                                        JPG, GIF, PNG
+                                        <p class="help-block"><strong>Reset profile picture</strong>&nbsp;&nbsp;
+                                            <input id="reset" type="checkbox" name="resetPicture"
+                                                   title="Reset profile picture"/></p>
+
+
+                                    </div>
+
+                                </div>   
+
+                                #{if player?.rfid != null }
+                                <div class="control-group">
+                                    <label class="control-label" for="rfid">RfID</label>
+                                    <div class="controls">
+                                        <input type="password" class="input-xlarge" id="rfid" placeholder="Scan your rfid while signin in to a match" 
+                                               value="${player?.rfid}" name="player.rfid" autofocus="autofocus" disabled="">
+
+                                        <p class="help-block"><strong>Reset RFID</strong>&nbsp;&nbsp;
+                                            <input id="resetrfid" type="checkbox" name="resetrfid"
+                                                   title="Reset profile picture"/></p>
+                                    </div>
+                                </div>
+                                #{/if}
+                                <div class="control-group">
+                                    <label class="control-label" for="fname">First name</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-xlarge" id="fname" placeholder="Your firstname is missing" 
+                                               value="${player?.first_name}" name="player.first_name">
+                                        <p class="help-block">Enter your name, so people can recognize you.</p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="lname">Last name</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-xlarge" id="lname" placeholder="Your lastname is missing"
+                                               value="${player?.last_name}" name="player.last_name">
+
+                                       
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <div class="controls">
+                                        <input type="text" class="input-xlarge" id="email" placeholder="Your email is missing"
+                                               value="${player?.email}" name="player.email"> 
+                                        
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="bio">Biography</label>
+                                    <div class="controls">
+                                        <textarea id="bio" maxlength="160" name="player.bio" placeholder="Your biography is missing">${player.bio}</textarea>
+                                        <p class="help-block">About yourself in fewer than <strong>160</strong> characters.</p>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button id="settings_save" type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- END PLAYER INFO-->
+                    </div>
+
+
+
+                    #{if p == 3}
+                    <div class="tab-pane active" id="password">
+                        #{/if}
+                        #{else}
+                        <div class="tab-pane" id="password">
+                            #{/else}
+
+
+
+
+
+
+
+                            <h2>Password</h2>
+                            <h3 class="title underline section ">It is good to change your password now and then.</h3>
+
+                            <br/><br/>
+                            <form action="@{PlayerController.changePassword()}"  method="POST" class="form-horizontal">
+                                #{authenticityToken /}
+                                <fieldset>
+                                    <div class="control-group">
+                                        <label class="control-label" for="current_password">Current password</label>
+                                        <div class="controls">
+                                            <input type="password" class="input-xlarge" id="current_password" 
+                                                   placeholder="Enter your current password" name="player.password">
+
+                                          
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="new_password">New password</label>
+                                        <div class="controls">
+                                            <input type="password" class="input-xlarge" id="new_password" 
+                                                   placeholder="Make a new password" name="newPassword">
+                                            <p class="help-block">Find a smart one.</p>
+                                            <small id="password_strength" class="help-inline help-error"
+                                                   style="display: none;">Too short</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="verify_password">Verify password</label>
+                                        <div class="controls">
+                                            <input type="password" class="input-xlarge" id="verify_password"
+                                                   placeholder="Match it" name="newPassword2">
+
+                                            <small id="password_match" class="help-inline help-error"
+                                                   style="display: none;">Password don't match</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button id="settings_save" type="submit" class="btn btn-primary">Change your password</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+
+
+
+                        #{if p == 2}
+                        <div class="tab-pane active" id="team">
+                            #{/if}
+                            #{else}
+                            <div class="tab-pane" id="team">                   
+                                #{/else}
+
+
+
+
+
+                                <h2>Your game profile</h2>
+                                <h3 class="title underline section ">
+                                    Some of this information will be shown while playing a match.
+
+                                </h3>
+                                <br/><br/>
+                                <form action="@{TeamController.editTeam(team.id)}" enctype="multipart/form-data" method="POST" class="form-horizontal">
+                                    #{authenticityToken /}
+                                    <fieldset>
+                                        <div class="control-group">
+                                            <label class="control-label" for="fileInput">Picture</label>
+                                            <img src="@{'/public/images/teams'}/${team?.image}" width="79" height="79" style="float: left; margin: 0 20px 0 20px;"/>
+                                            <div class="controls">
+                                                <input type="file" name="image" id="team_image" /><br/>
+                                                Maximum size of 700k.<br/> 
+                                                JPG, GIF, PNG
+                                                <p class="help-block"><strong>Reset profile picture</strong>&nbsp;&nbsp;
+                                                    <input id="reset2" type="checkbox" name="reset"
+                                                           title="Reset profile picture"/></p>
+                                            </div>
+                                        </div>  
+                                        <div class="control-group">
+                                            <label class="control-label" for="team_name">Team name</label>
+                                            <div class="controls">
+                                                <input type="text" data-provide="typeahead" class="input-xlarge" id="team_name" 
+                                                       value="${team?.team_name}" name="team.team_name">
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="organization">Organization</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xlarge" id="organization" placeholder="Your organization is missing"
+                                                       value="${team?.organization}" name="team.organization">
+                                                <p class="help-block">Which organization are you with.</p>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="playerArchRival">Arch-rival</label>
+                                            <div class="controls">
+                                                <input type="text" data-provide="typeahead" class="input-xlarge" id="playerArchRival" placeholder="Your arch rival is missing"
+                                                       value="${team?.arch_rival?.team_name}" name="team.arch_rival.team_name" autocomplete="off">
+                                                <p class="help-block">Don't worry we will find them for you.</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="bio">Biography</label>
+                                            <div class="controls">
+                                                <textarea id="team_bio" maxlength="160" name="team.bio" placeholder="Your biography is missing">${team?.bio}</textarea>
+                                                <p class="help-block">About your team in fewer than <strong>160</strong> characters.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button id="settings_save2" type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

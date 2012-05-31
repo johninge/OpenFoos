@@ -1,0 +1,184 @@
+#{extends 'main.html' /}
+#{set page:'team_settings' /}
+<script type="text/javascript" src="/public/javascripts/text_manipulation/openfoos_text.js"></script>
+<script type="text/javascript" >
+    
+    $(document).ready(function(){
+        
+        
+       
+        doInputfeltTricks();
+
+
+        $('.bar').css('width', '${compeleted}%')
+        $('#playerArchRival').typeahead({
+            items: 3, 
+            source: function (typeahead) {
+                return $.get('/application/everybody ',  function (data) 
+                {
+                    return typeahead.process(data);
+                });
+            },
+            onselect: function (data){
+                  
+                  
+               
+            }
+        });
+        
+    });
+   
+</script>
+#{if  ( (session.pid && ((Long.parseLong(session.pid) == team?.player1?.id)||(Long.parseLong(session.pid) == team?.player2?.id))) && session.token && session.login)}
+<div class="row">
+    <div class="dashboard">
+        <div class="span4 card section">
+            <ul class="thumbnails">
+
+         
+                <li>
+                    <a href="@{TeamController.profile(team?.team_name)}" class="thumbnail">
+                        <img src="@{'/public/images/teams'}/${team?.image}" alt="${team?.team_name}">
+                    </a>
+                </li>
+                <li>
+                    <h3>${team.team_name}</h3>
+                    <p class="subheader">View your profile page</p>
+                </li>
+            </ul>
+            <div class="progress progress-striped
+                 active">
+                <div class="bar"
+                     style="width: 100%;"></div>
+            </div>
+            You have completed ${compeleted}% of you profile
+        </div>
+
+        <div class="span4">
+
+            
+            
+            #{ifError 'itsok'}
+            <div class="alert alert-success">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Changes…</h1>
+                <br/>
+                #{errors 'itsok'}
+
+                <li>${error}</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+            
+            
+            
+            #{ifError 'settings'}
+            <div class="alert alert-error">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Oops…</h1>
+                <br/>
+                #{errors 'settings'}
+                <li>${error }</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+
+
+
+            #{ifError 'gay'}
+            <div class="alert">
+
+                <button class="close" data-dismiss="alert">×</button>
+                <h1>Okey....</h1>
+                <br/>
+                #{errors 'gay'}
+
+                <li>${error}</li>
+                #{/errors}
+                <br/>
+            </div>
+            #{/ifError}
+
+        </div>
+
+    </div>
+    <div class="tabbable" style="float: right"> 
+        <div class="span8">
+            <div class="tab-content card">
+                <div class="tab-pane active" id="account">
+                    <h2>Your team</h2>
+                    <h3 class="title underline section ">Change your teams basic information.</h3>
+
+
+
+     <br/><br/>
+
+                    <form action="@{TeamController.editTeam(team.id)}" enctype="multipart/form-data" method="POST" class="form-horizontal">
+                        #{authenticityToken /}
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="fileInput">Picture</label>
+                                <img src="@{'/public/images/teams'}/${team?.image}" width="79" height="79" style="float: left; margin: 0 20px 0 20px;"/>
+                                <div class="controls">
+                                    <input type="file" name="image" id="team_image" /><br/>
+                                    Maximum size of 700k.<br/> 
+                                    JPG, GIF, PNG
+                                    <p class="help-block"><strong>Reset profile picture</strong>&nbsp;&nbsp;
+                                        <input id="reset" type="checkbox" name="reset"
+                                               title="Reset profile picture"/></p>
+                                </div>
+                            </div>  
+                            <div class="control-group">
+                                <label class="control-label" for="team_name">Team name</label>
+                                <div class="controls">
+                                    <input type="text" data-provide="typeahead" class="input-xlarge" id="team_name" 
+                                           value="${team?.team_name}" name="team.team_name">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="organization">Organization</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="organization" 
+                                           value="${team?.organization}" name="team.organization">
+                                    <p class="help-block">Which organization are you with?</p>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="playerArchRival">Arch-rival</label>
+                                <div class="controls">
+                                    <input type="text" data-provide="typeahead" class="input-xlarge" id="playerArchRival" 
+                                           autocomplete="off" value="${team?.arch_rival?.team_name}" name="team.arch_rival.team_name">
+                                    <p class="help-block">Don't worry we will find them for you.</p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="team_bio">Biography</label>
+                                <div class="controls">
+                                    <textarea id="team_bio" maxlength="160" name="team.bio">${team?.bio}</textarea>
+                                    <p class="help-block">About your team in fewer than <strong>160</strong> characters.</p>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button id="settings_save2" type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+#{/if}

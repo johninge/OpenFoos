@@ -1,0 +1,55 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+ *      /admin           module:crud
+# API
+
+GET     /api/player/autocomplete/{username}           Api.autocomplete
+GET     /api/player/login/rfid/{rfid}                 Api.getPlayerByRFID
+POST    /api/player/login                             Api.getPlayer
+POST    /api/player/register                          Api.registerPlayer
+POST    /api/team                                     Api.fetchTeam
+POST    /api/game                                     Api.initializeGame  
+PUT     /api/game                                     Api.setGame  
+POST    /api/game/goals                               Api.registerGoals  
+
+GET     /application/everybody                        Application.autocomplete      
+GET     /error                                        Application.ofError      
+
+GET     /application/boards                          BoardsController.getAllBoards
+GET     /application/goals                           GoalController.getAllGoals
+
+# Home page
+GET     /                                             Application.main_page
+GET     /game                                         Application.game
+GET     /login                                        Application.login
+GET     /register                                     Application.register
+=======
+
+# Home page
+GET     /                                           Application.main_page
+GET     /game                                       Application.game
+GET     /login                                      Application.login
+
+# Ignore favicon requests
+GET     /favicon.ico                                 404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+
+
+# Player pages
+
+GET     /players/profile/{username}                 PlayerController.profile(username: String)
+GET     /players/settings                           PlayerController.settings
+
+
+
+#  Team pages 
+
+
+GET     /teams/profile/{teamname}                   TeamController.profile(teamname: String)
+GET     /teams/settings/{teamname}                  TeamController.settings(teamname: String)

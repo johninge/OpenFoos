@@ -1,0 +1,240 @@
+/* 
+    Document   : openfoos_style
+    Created on : 02.apr.2012, 13:49:12
+    Author     : Neberd
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+
+body{
+    background-image: url(https://si0.twimg.com/images/themes/theme1/bg.png);
+    background-position: left 40px;
+    background-attachment: fixed;
+    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-color: #C0DEED;
+}
+
+
+.openfoss_main{
+    height: 328px;
+    width: 838px;
+    margin: -154px 0 0 -418px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.hero-unit{
+    padding: 0;
+    width: 520px;
+    height: 328px;
+}
+
+.page1_main{
+    height: 328px;
+    width: 838px;
+    margin: 0 0 0 -418px;
+    position: absolute;
+    left: 50%;
+
+}
+
+.page1_top{
+    padding: 0;
+    width: 835px;
+    height: 152px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin: 0;
+}
+
+.profile{
+
+    padding: 12px;
+    width: 827px;
+    height: 144px;
+
+}
+
+.info{
+    float: left;
+    width: 50%;
+    margin: 0 0 0 12px;
+}
+/*
+p{
+    display: block;
+    width: 50%;
+    
+}*/
+
+#page1_sidebar{
+    padding: 0;
+    width: 302px;
+    height: 166px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-top: 10px;
+    float: left;
+    border: 1px solid #EEE;
+}
+
+.page1_content{
+    position: absolute;
+    padding: 0;
+    width: 522px;
+    height: 164px;
+    top: 152px;
+    left: 314px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.size128{
+    width: 128px;
+    height: 128px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    float: left;
+}
+
+.sidebar_meny{
+    width: 300px;
+}
+
+.sidebar_meny ul{
+    list-style: none;
+    display: block;
+}
+
+#sidebar_container{
+}
+
+.list-link {
+    
+    margin: 0;
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    font-weight: bold;
+
+    ebkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.list-link:hover{
+    background-color: white;
+    color: #333;
+    text-decoration: none;
+}
+
+li{
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.icon-chevron-right{
+    float: right;
+}
+
+
+
+
+
+.signin{
+
+    position: absolute;
+    top: 0;
+    left: 536px;
+    width: 306px;
+    height: 108px;
+    background-color: #eeeeee;
+
+
+}
+
+.signup{
+
+    position: absolute;
+    top: 121px;
+    left: 536px;
+    width: 306px;
+    height: 206px;
+    background-color: #f5f5f5;
+
+
+}
+
+
+.span3, .span2{
+    height: 20px;
+    margin: 2px auto; 
+}
+
+.openfoos_signup h4{
+    display: block;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #777;
+    border-bottom: 1px solid #E2E2E2;
+}
+
+.signup-btn{
+    position: absolute;
+    right: 12px;
+    bottom: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 144px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.signin-btn{
+    width: 90px;
+    height: 30px;
+    margin-left: 4px;
+}
+
+
+.openfoos_signup, .openfoos_signin {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.signin, .signup{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+

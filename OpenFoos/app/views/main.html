@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>OpenFoos</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/profile.css'}" />
+        <script src="@{'/public/javascripts/jquery-1.7.2.js'}"></script>
+        <script src="@{'/public/bootstrap/js/bootstrap.js'}"></script>
+        <script type="text/javascript" >
+    
+            $(document).ready(function(){
+        
+        
+                $('#main_typeahead').typeahead({
+                    items: 8, 
+                    source: function (typeahead) {
+                        return $.get('/application/everybody ',  function (data) 
+                        {
+                            return typeahead.process(data);
+                        });
+                    },
+                    onselect: function (data){
+                  
+                        $.get('@{Application.redirectToProfile()}', {who : data}, function(data){
+                            window.location = data;
+                        });
+                    }
+                });
+        
+        
+        
+            });
+    
+        </script>
+
+
+
+
+
+
+    </head>
+
+
+    <body id="mainBody">
+        <div class="navbar navbar-fixed-top" >
+            <div class="navbar-inner">
+                <div class="container">
+
+
+                    <ul class="nav">
+                        <li class="${page == '/' ? 'active' : ''}">
+                            <a class="brand" href="/">
+
+                                Openfoos
+
+                                <img id="imgo" src="@{'public/images/default/openfoos_icon.png'}">
+                            </a> 
+                        </li>
+
+                    </ul>
+
+                    <div class="navbar-search pull-right menydowner">
+                        <input type="text" data-provide="typeahead" class="search-query span3" placeholder="Search" id="main_typeahead">   
+                    </div>
+
+                    <ul class="nav pull-right">
+                        #{if session.login}
+                        <li class="dropdown ${page == '/' ? 'active' : ''}">
+                            <a class="dropdown-toggle menydowner2"
+                               data-toggle="dropdown"
+                               href="#">
+                                <i class="icon-user icon-white"></i>
+                                <b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="@{PlayerController.profile(session.pname)}" ><i class="icon-user"></i> View my profile page</a></li>
+                                <li><a href="@{PlayerController.settings(1)}"><i class="icon-pencil"></i> Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@{PlayerController.logoutPlayer()}"><i class="icon-remove"></i> Sign out</a></li>
+                            </ul>
+
+                        </li>
+                        #{/if}
+                        #{if !session.login}
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle menydowner2"
+                               data-toggle="dropdown"
+                               href="#">
+                                <i class="icon-home icon-white"></i>
+                                <b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="@{Application.login()}" ><i class="icon-user"></i> Sign in</a></li>
+                                <li><a href="@{Application.register()}"><i class="icon-plus-sign"></i> Sign up</a></li>
+                            </ul>
+
+                        </li>
+                        #{/if}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <br/><br/>
+            #{doLayout /}
+
+        </div><!-- END .container -->
+
+
+    </body>
+</html>

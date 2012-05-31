@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+#{set page:'login_fail' /}
+<br/>
+<div class="row">
+    #{ifError 'login'}
+    <div class="war alert1 alert-error">
+      
+        
+        <h1>Oops…</h1>
+        <br/>
+        <li>#{error 'login' /}</li>
+    <br/>
+    </div>
+    #{/ifError}
+    <div class="span12">
+        <div class="signin-wrapper">
+            <h1>Sign in to Openfoos</h1>
+            <form class="form-horizontal" action="@{PlayerController.loginPlayer()}" method="POST">
+                <fieldset>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="text" name="player.username" 
+                           autofocus="autofocus" autocomplete="on" class="input-xlarge"
+                           placeholder="Type your username"/>
+
+                    <br/>
+                           
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="password" name="player.password"
+                          autocomplete="on" class="input-xlarge"
+                           placeholder="Type your password"/>
+
+                    <br/>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    
+                    </div>
+                </fieldset>
+            </form>
+            <div class="bottom-box">
+
+            </div>
+        </div>
+    </div>
+</div>
