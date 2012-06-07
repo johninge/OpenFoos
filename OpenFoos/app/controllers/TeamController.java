@@ -91,7 +91,7 @@ public class TeamController extends Controller {
         boolean hasChanged = false;
         boolean showValidationErrors = false;
         List<String> changes = new ArrayList<String>();
-        team.team_name = team.team_name.trim();
+        //team.team_name = team.team_name.trim();
         if (team.team_name != null && !"".equals(team.team_name) && !existingTeam.team_name.equals(team.team_name)) {
             Team t = Team.find("byTeam_name", team.team_name).first();
             if (t == null) {
