@@ -49,11 +49,5 @@ project.xml
 
 ########
 
-Open_foos/test-result/*
-*.conf
-application.conf
+OpenFoos/test-result/*
 
-
-OpenFoos/conf/application.conf
-
-OpenFoos/conf/application.conf
