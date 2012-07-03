@@ -51,5 +51,9 @@ project.xml
 
 Open_foos/test-result/*
 *.conf
+application.conf
 
 
+OpenFoos/conf/application.conf
+
+OpenFoos/conf/application.conf
