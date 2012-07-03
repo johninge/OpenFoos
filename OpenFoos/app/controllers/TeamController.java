@@ -198,7 +198,7 @@ public class TeamController extends Controller {
 
         }
         //User picks arch rival from the list
-        if (team.arch_rival.team_name != null && team.arch_rival.team_name.length() > 1/*
+        if (team.arch_rival.team_name != null && team.arch_rival.team_name.length() >= 1/*
                  * && !team.arch_rival.team_name.equals("")
                  */) {
 
@@ -206,6 +206,7 @@ public class TeamController extends Controller {
             Team arch_rival = null;
             if (!team.arch_rival.team_name.equals("")) {
                 arch_rival = Team.find("byTeam_name", team.arch_rival.team_name).first();
+             
             }
 
             if (arch_rival != null && existingTeam.arch_rival != arch_rival) {
@@ -289,6 +290,8 @@ public class TeamController extends Controller {
                 }
             }//END arch_rival != null && existingTeam.arch_rival != arch_rival
             else if (arch_rival == null) {
+                //TODO 
+                //Search for player
                 Validation.addError("settings", "Cant find anybody with that name..");
                 Validation.keep();
                 showValidationErrors = true;

@@ -4,7 +4,6 @@ package models;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -27,7 +26,7 @@ public class Team extends Model {
     public Player player1 = null;
     @ManyToOne
     public Player player2 = null;
-    @OneToOne
+    @ManyToOne
     public Team arch_rival = null;
     
     public double rating = 1500;

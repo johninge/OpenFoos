@@ -24,7 +24,7 @@ GET     /                                             Application.main_page
 GET     /game                                         Application.game
 GET     /login                                        Application.login
 GET     /register                                     Application.register
-=======
+
 
 # Home page
 GET     /                                           Application.main_page

@@ -285,6 +285,9 @@
                     </li> 
                     #{if statistic?.games_playd > 0 }
                     <li>
+                        <h6 class="underline">RATING<p class="stat-para">${team?.rating.format('0')}</p></h6>    
+                    </li> 
+                    <li>
                         <h6 class="underline">FORM<p class="stat-para">${statistic?.last_three_games_played}</p></h6>    
                     </li> 
                     #{/if}
