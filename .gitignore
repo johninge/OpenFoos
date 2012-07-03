@@ -50,4 +50,4 @@ project.xml
 ########
 
 OpenFoos/test-result/*
-
+OpenFoos/conf/application.conf
