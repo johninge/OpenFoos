@@ -50,6 +50,6 @@ project.xml
 ########
 
 Open_foos/test-result/*
-
+*.conf
 
 
