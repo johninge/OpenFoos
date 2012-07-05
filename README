@@ -14,3 +14,16 @@ See also the project page for the startup of OpenFoos: http://student.iu.hio.no/
 Curently the user manual is only in Norwegian. It can be found on the last pages in this pdf:
 
 http://student.iu.hio.no/hovedprosjekter/2012/data/29/documents/Prosjektrapport.pdf
+
+Quick start guide
+
+First you have to download play 1.2.4 version from 
+http://www.playframework.org/download
+Secon you have to connect to a MySQL Db. This can be done by editing OpenFoos/conf/application.conf file (ln nr. 91) 
+
+db=mysql://user:pwd@host/database.
+
+Now you are almost ready to go! You just have to start the play server. 
+Just visit http://localhost:9000/ or http://localhost:9000/game
+
+For more information about playframework visit http://www.playframework.org
